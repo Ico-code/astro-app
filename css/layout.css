@@ -1,0 +1,283 @@
+:root {
+    --secondary-dark: #1a2633;
+    --secondary-light: #FFFFFF;
+    --primary-dark-clear: rgba(33, 53, 76, 0.2);
+    --primary-light-clear: rgba(228, 224, 218,0.2);
+    --primary-dark: #2a3643;
+    --footer-dark: rgb(38, 57, 77);
+    --primary-light: #e4e0da;
+    --accent-orange: #FFA200;
+    --accent-red: #d13a6f;
+    --accent-orange-hover: #d48703;
+    --accent-red-hover: #b83d68;
+    --padding-small: 5px;
+    --padding-medium: 10px;
+    --padding-large: 20px;
+    --margin-small: 5px;
+    --margin-medium: 10px;
+    --margin-large: 20px;
+    --indent-medium: 1.2rem;
+}
+
+.color-primary-white {
+    color: var(--primary-light);
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+article {
+    min-height: 97vh;
+}
+
+footer {
+    min-height: 3vh;
+    background-color: var(--footer-dark);
+    padding: var(--padding-small);
+    color: white;
+}
+
+footer * {
+    margin: 0px;
+}
+
+#sideBar {
+    background-color: var(--primary-dark);
+    padding: var(--padding-small);
+    max-width: 25%;
+    min-width: 25%;
+}
+
+#sideBar * {
+    color: var(--secondary-light);
+}
+
+#sideBar input {
+    color: var(--secondary-dark);
+}
+
+#astronomyContainer {
+    background-color: var(--secondary-dark);
+    padding: var(--margin-medium);
+    max-height: 97vh;
+    overflow-y: scroll;
+
+}
+
+#detailedVideo {
+    height: 400px;
+}
+
+.learnMoreBTN {
+    background-color: var(--accent-red);
+    border: none;
+    border-radius: 10px;
+    padding: var(--padding-medium);
+    transition: background-color 0.25s;
+}
+
+.learnMoreBTN:hover {
+    background-color: var(--accent-red-hover);
+}
+
+.imageContainer {
+    min-width: 100%;
+    min-height: 300px;
+    max-width: 100%;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+img, iframe {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.redHover:hover {
+    background-color: var(--accent-red-hover);
+}
+
+.orangeHover{
+    background-color: var(--accent-orange);
+}
+
+
+.redHover {
+    background-color: var(--accent-red);
+}
+
+.orangeHover:hover{
+    background-color: var(--accent-orange-hover);
+}
+
+.itemName {
+    color: var(--secondary-light);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.moreInfo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    opacity: 0;
+    background-color: var(--primary-light-clear);
+    transition: 0.25s opacity;
+}
+
+#detailedView {
+    background-color: var(--secondary-dark);
+    border: 1px solid white;
+    border-radius: 20px;
+    max-width: 1500px;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    transition: 0.25s;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.detailedListItem {
+    border: 1px solid white;
+}
+
+
+.detailedList{
+    border: 1px solid white;
+}
+
+#whiteBlur {
+    background-color: var(--primary-light-clear);
+}
+
+#details {
+    overflow-y: scroll;
+    max-height: 90%;
+}
+
+.visible {
+    display: none;
+}
+
+.moreInfo:hover {
+    opacity: 1;
+}
+.astroItem{
+    margin: 5px;
+    min-width: 32%;
+    max-width: 32%;
+    background-color: var(--primary-dark);
+}
+
+@media only screen and (min-width:500px){
+
+    #detailedVideo {
+        height: 200px;
+    }
+
+}
+
+
+@media only screen and (max-width:900px){
+
+    #logo,.learnMoreBTN {
+        margin-left: 0px !important;
+    }
+
+}
+
+@media only screen and (min-width:1400px){
+
+    .astroItem{
+        min-width: 31%;
+        max-width: 31%;
+    }
+
+    #detailedVideo {
+        height: 798px;
+    }
+}
+
+
+@media only screen and (max-width:1400px){
+
+    .astroItem{
+        min-width: 48%;
+        max-width: 48%;
+    }
+    #detailedVideo {
+        height: 600px;
+    }
+
+}
+
+
+@media only screen and (max-width:1200px){
+
+    #detailedVideo {
+        height: 600px;
+    }
+}
+
+
+@media only screen and (max-width:1024px){
+
+    #detailedVideo {
+        height: 500px;
+    }
+}
+
+
+@media only screen and (max-width:900px){
+
+    #detailedVideo {
+        height: 450px;
+    }
+}
+
+@media only screen and (max-width:800px){
+
+    .astroItem{
+        min-width: 100%;
+        max-width: 100%;
+    }
+    #detailedVideo {
+        height: 400px;
+    }
+
+}
+
+@media only screen and (max-width:700px){
+
+    #detailedVideo {
+        height: 400px;
+    }
+
+}
+
+
+@media only screen and (max-width:540px){
+
+    #detailedVideo {
+        height: 350px;
+    }
+
+}
+@media only screen and (max-width:500px){
+
+    #detailedVideo {
+        height: 200px;
+    }
+
+}
