@@ -1,5 +1,5 @@
 var APODList = {};
-
+// Fetches APODs from NASA API for the given date range
 async function fetchAPODs() {
   document.getElementById("astroList").innerHTML = "";
   try {
@@ -26,8 +26,8 @@ async function fetchAPODs() {
       let data = await response.json();
 
       // console.log(data)
-      if(data.code == 400){
-        continue
+      if (data.code == 400) {
+        continue;
       }
       displayAPOD(data);
     }
@@ -36,8 +36,10 @@ async function fetchAPODs() {
   }
 }
 
+// Extracts YouTube video ID from a YouTube link
 function getYouTubeVideoId(link) {
-  const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/;
+  const regex =
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/;
   const match = link.match(regex);
   if (match) {
     return match[1];
@@ -46,42 +48,38 @@ function getYouTubeVideoId(link) {
   }
 }
 
-function clearAPODs(){
+// Clears the list of APODs
+function clearAPODs() {
   document.getElementById("astroList").innerHTML = "";
 }
 
+// Displays the APOD data
 function displayAPOD(data) {
-  // display date, title, explanation, hdurl
   APODList[new Date(data.date).getTime()] = data;
 
-  // console.log(data);
   // Create the HTML elements
   let astroList = document.getElementById("astroList");
   let apodContainer = document.createElement("li");
   apodContainer.className =
     "astroItem d-flex flex-column justify-content-center align-items-center";
-  // apodContainer.id = `${new Date(data.date).getTime()}`;
   let figure = document.createElement("figure");
   figure.className =
     "imageContainer d-flex flex-column justify-content-center align-items-center";
 
   let img;
-
-  if(data.media_type == "video"){
+  if (data.media_type == "video") {
     img = document.createElement("img");
-    let videoID = getYouTubeVideoId(data.url)
-    if(videoID==null){
-      img.src = './images/placeholder.jpg';
-    }
-    else {
+    let videoID = getYouTubeVideoId(data.url);
+    if (videoID == null) {
+      img.src = "./images/placeholder.jpg";
+    } else {
       img.src = `https://img.youtube.com/vi/${videoID}/sddefault.jpg`;
     }
-    img.alt = "Astronomy Picture of the Day";  
-  }
-  else{
+    img.alt = "Astronomy Picture of the Day";
+  } else {
     img = document.createElement("img");
     img.src = data.url;
-    img.alt = "Astronomy Picture of the Day";  
+    img.alt = "Astronomy Picture of the Day";
   }
   let itemName = document.createElement("p");
   itemName.className = "itemName text-center";
@@ -92,7 +90,11 @@ function displayAPOD(data) {
   let learnMoreBtn = document.createElement("button");
   learnMoreBtn.className = "learnMoreBTN text-white";
   learnMoreBtn.innerHTML = "Learn more";
-  learnMoreBtn.setAttribute("onclick",`openDetailedView(${new Date(data.date).getTime()})`);
+  learnMoreBtn.setAttribute(
+    "onclick",
+    `openDetailedView(${new Date(data.date).getTime()})`
+  );
+  // Append the HTML elements
   moreInfoContainer.appendChild(itemName);
   moreInfoContainer.appendChild(learnMoreBtn);
   figure.appendChild(img);
@@ -101,50 +103,56 @@ function displayAPOD(data) {
   astroList.appendChild(apodContainer);
 }
 
+//Opens a more detailed view of the picture
 function openDetailedView(id) {
-  document.getElementById("whiteBlur").classList.toggle('visible')
+  document.getElementById("whiteBlur").classList.toggle("visible");
   let img;
   let figure = document.createElement("figure");
   figure.classList = "w-100";
-  if(APODList[id].media_type == 'video'){
+  if (APODList[id].media_type == "video") {
     img = document.createElement("iframe");
     img.src = APODList[id].url;
     img.height = "100%";
     img.width = "100%";
     figure.id = "detailedVideo";
-    figure.appendChild(img)  
-  }
-  else {
+    figure.appendChild(img);
+  } else {
     img = document.createElement("img");
     img.src = APODList[id].url;
     img.alt = "Astronomy Picture of the Day";
     figure.id = "detailedImage";
-    figure.appendChild(img)  
+    figure.appendChild(img);
   }
 
   document.getElementById("detailedTitle").innerHTML = APODList[id].title;
-  document.getElementById("detailedExplanation").innerHTML = APODList[id].explanation;
+  document.getElementById("detailedExplanation").innerHTML =
+    APODList[id].explanation;
   document.getElementById("visualDetails").innerHTML = "";
   document.getElementById("visualDetails").appendChild(figure);
-  document.getElementById("detailedDate").innerHTML = `<p>Date: ${APODList[id].date}</p>`;
+  document.getElementById(
+    "detailedDate"
+  ).innerHTML = `<p>Date: ${APODList[id].date}</p>`;
 
-  if(APODList[id].copyright){
-    document.getElementById("detailedCopyright").innerHTML = `<p>Copyright: ${APODList[id].copyright}</p>`;
-  }
-  else {
-    document.getElementById("detailedCopyright").innerHTML = `<p>Copyright: NASA</p>`;
+  if (APODList[id].copyright) {
+    document.getElementById(
+      "detailedCopyright"
+    ).innerHTML = `<p>Copyright: ${APODList[id].copyright}</p>`;
+  } else {
+    document.getElementById(
+      "detailedCopyright"
+    ).innerHTML = `<p>Copyright: NASA</p>`;
   }
 }
 
-function closeDetailedView(){
-  document.getElementById("whiteBlur").classList.toggle('visible')
+//Closes the more detailed view of the picture
+function closeDetailedView() {
+  document.getElementById("whiteBlur").classList.toggle("visible");
 }
 
+//Initializes dates for the date pickers
 function initialize() {
-  
-const today = new Date();
-const todayFormatted = today.toISOString().split('T')[0];
-document.getElementById('start-date-input').value = todayFormatted;
-document.getElementById('end-date-input').value = todayFormatted;
-
+  const today = new Date();
+  const todayFormatted = today.toISOString().split("T")[0];
+  document.getElementById("start-date-input").value = todayFormatted;
+  document.getElementById("end-date-input").value = todayFormatted;
 }
